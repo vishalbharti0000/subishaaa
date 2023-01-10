@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '2.7.2'
+    id "org.springdoc.openapi-gradle-plugin" version "1.4.0"
+}
+
+group = 'com.jewellery'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.3'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.4.2'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.7.2'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.3'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
+    implementation 'org.modelmapper:modelmapper:3.1.0'
+
+//    s3 dependency
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
