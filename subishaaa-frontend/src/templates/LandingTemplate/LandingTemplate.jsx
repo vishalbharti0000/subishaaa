@@ -12,25 +12,26 @@ import ContactPageIcon from '@mui/icons-material/ContactPage';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import Stack from '@mui/material/Stack';
 import BusinessIcon from '@mui/icons-material/Business';
-import CallIcon from '@mui/icons-material/Call';
 import { useNavigate } from "react-router-dom";
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 const LandingTemplate = () => {
     const navigate = useNavigate();
     return (
         <>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
+            <Grid container >
+                <Grid item xs={12} >
                     <Box sx={{ display: { xs: "none", md: "block" } }}>
                         <CustomizedCarousel mobile={false} />
                     </Box>
-                    <Box sx={{ display: { xs: "block", md: "none" } }}>
+                    <Box sx={{ display: { xs: "block", md: "none" }}} >
                         <CustomizedCarousel mobile={true} />
                     </Box>
                 </Grid>
 
                 <Background>
-                    <Box sx={{ display: { xs: "none", md: "block" } }}>
+                    <Box sx={{ display: { xs: "none", md: "block" } }} ml={2} >
                         <Card sx={{ display: 'flex' }}>
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <CardContent sx={{ flex: '1 0 auto' }}>
@@ -53,8 +54,7 @@ const LandingTemplate = () => {
                             <CardMedia
                                 component="img"
                                 sx={{ width: 450 }}
-                                //keep this image in s3 and replace link
-                                image="https://cdn.builder.io/api/v1/image/assets%2Fa2b42a9cc9b6477aa448a90e48b7600f%2F3571079501fe4d85b0c403c90c532174?format=webp&width=2000"
+                                image="pack.webp"
                                 alt="Live from space album cover"
                             />
                         </Card>
@@ -65,8 +65,7 @@ const LandingTemplate = () => {
                                 component="img"
                                 alt="green iguana"
                                 height="100"
-                                //keep this image in s3 and replace link
-                                image="https://cdn.builder.io/api/v1/image/assets%2Fa2b42a9cc9b6477aa448a90e48b7600f%2F3571079501fe4d85b0c403c90c532174?format=webp&width=2000"
+                                image="pack.webp"
                             />
                             <CardContent>
                                 <Typography component="div" variant="h5">
@@ -88,7 +87,7 @@ const LandingTemplate = () => {
                             </Stack>
                         </Card>
 
-                        <Card sx={{ minWidth: 275 }} sx={{ mt: 1 }}>
+                        <Card sx={{ minWidth: 275, mt: 1 }} >
                             <CardContent>
                                 <Typography sx={{ fontSize: 14 }} color="text.secondary" textAlign={"center"} gutterBottom>
                                     <BusinessIcon style={{ color: "#41b6c2" }} fontSize="large" />
@@ -96,8 +95,11 @@ const LandingTemplate = () => {
                                 <Typography variant="h5" textAlign={"center"} component="div">
                                     Dhanbad, Jharkhand
                                 </Typography>
-                                <Typography sx={{ mb: 1.5 }} textAlign={"center"} alignItems={"center"} color="text.secondary" >
-                                    <Button startIcon={<CallIcon style={{ color: "#41b6c2" }} />}> +91 1234567890 </Button>
+                                <Typography textAlign={"center"} alignItems={"center"} color="text.secondary" >
+                                    <Button onClick={() => window.open("https://wa.me/message/NCNR7XLD4MKAG1")} startIcon={<WhatsAppIcon style={{ color: "#41b6c2" }} />}> +91 86760 90911 </Button>
+                                </Typography>
+                                <Typography textAlign={"center"} alignItems={"center"} color="text.secondary" >
+                                    <Button onClick={() => window.open("https://instagram.com/subishaaa_thefinesilver?igshid=Yzg5MTU1MDY=")} startIcon={<InstagramIcon style={{ color: "#E4405F" }} />}> subishaaa_thefinesilver </Button>
                                 </Typography>
                             </CardContent>
                         </Card>

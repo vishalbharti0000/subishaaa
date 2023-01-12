@@ -11,27 +11,27 @@ import LandingImages from "../LandingImages/LandingImages";
 function ProductCard(props) {
     const navigate = useNavigate();
     return (
-        <div data-testid="carcard">
-            <Card data-testid="card" onClick={() => navigate("/")}>
+        <div>
+            <Card  data-testid="card" onClick={() => navigate("/")}>
                 <CardActionArea>
-                    <LandingImages width={"100%"} height={"300px"} src={props.item.image} />
+                    {props.mobile && <LandingImages width={"100%"} height={"150px"} src={props.item.image} />}
+                    {!props.mobile && <LandingImages width={"100%"} height={"300px"} src={props.item.image} />}
                     <CardContent>
                         <Grid
                             container
                             direction="row"
-                            justifyContent="space-between"
                             alignItems="center"
                         >
                             <Grid item>
-                                <Typography gutterBottom variant="h6" component="div">
+                                <Typography  style={{ fontSize: "12px"}} component="div">
                                     <ProductModel>{props.item.name}</ProductModel>
                                 </Typography>
-                                <Typography gutterBottom component="div">
+                                <Typography style={{ fontSize: "12px"}} component="div">
                                     <ProductModel>{props.item.description}</ProductModel>
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <Typography gutterBottom variant="h6" component="div">
+                                <Typography style={{ fontSize: "12px"}} component="div">
                                     <ProductModel>₹
                                         {
                                             props.item.rate

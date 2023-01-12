@@ -8,16 +8,27 @@ import Logo from "../../molecules/Logo/Logo";
 import MenuIcon from "../../atoms/MenuIcon/MenuIcon";
 import Toolbar from "../../atoms/Toolbar/Toolbar";
 import MobileDrawer from "../../molecules/MobileDrawer/MobileDrawer";
-import { NavButton } from "./NavBar.styles";
+import { NavButton, StyledMenu } from "./NavBar.styles";
+import MenuItem from '../../atoms/MenuItem/MenuItem';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 
 const NavBar = (props) => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     const navigate = useNavigate();
     const handleDrawerToggle = (nav) => {
         setMobileOpen(false);
         if (nav) {
             navigate(nav, { replace: true });
+            window.location.reload(false);
         }
     };
 
@@ -38,15 +49,33 @@ const NavBar = (props) => {
                     <Box
                         sx={{ ml: 1, flexGrow: 1, display: { xs: "none", sm: "block" } }}
                     >
-                        {navItems.map((item) => (
+                        {navItems.filter((item) => item.id <= 2).map((item) => (
                             <NavButton
                                 data-testid="navitem"
                                 key={item.id}
-                                onClick={() => navigate(item.route)}
+                                onClick={() => { navigate(item.route); window.location.reload(false); }}
                             >
                                 {item.name}
                             </NavButton>
                         ))}
+                        <NavButton
+                            onClick={handleClick}
+                            endIcon={<KeyboardArrowDownIcon />}
+                        >
+                            Categories
+                        </NavButton>
+                        <StyledMenu
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                        >
+                            {navItems.filter((item) => item.id > 2).map((item) => (
+                                <MenuItem style={{ backgroundColor: "#282828", color: "#ffffff" }} onClick={() => { navigate(item.route); window.location.reload(false); }} disableRipple>
+                                {item.name}
+                            </MenuItem>
+
+                        ))}
+                        </StyledMenu>
                     </Box>
                 </Toolbar>
             </AppBar>

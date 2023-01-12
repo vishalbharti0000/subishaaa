@@ -11,20 +11,31 @@ import DrawerLogo from "../Logo/DrawerLogo";
 import useSettings from "../../../hooks/useSettings";
 import { THEMES } from "../../../constants/enums.constants";
 import { useState } from "react";
+import MenuItem from '../../atoms/MenuItem/MenuItem';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { StyledMenu } from "./MobileDrawer.styles";
 
 const MobileDrawer = (props) => {
     const settings = useSettings();
     const { handleDrawerToggle } = props;
     const [open, setOpen] = useState(true);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const menuOpen = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     const drawer = (
         <Box sx={{ textAlign: "center" }}>
             <Typography variant="h6" sx={{ my: 2 }}>
-                <DrawerLogo width="170" height="40" />
+                <DrawerLogo width="120" height="40" />
             </Typography>
             <Divider />
             <List sx={{ padding: 0 }}>
-                {navItems.map((item) => (
+                {navItems.filter((item) => item.id <= 2).map((item) => (
                     <div key={item.id}>
                         <ListItem>
                             <ListItemButton
@@ -33,12 +44,30 @@ const MobileDrawer = (props) => {
                                     handleDrawerToggle(item.route);
                                 }}
                             >
-                                <ListItemText primary={item.name} />
+                                <ListItemText primaryTypographyProps={{fontSize: '12px'}} primary={item.name} />
                             </ListItemButton>
                         </ListItem>
                         <Divider />
                     </div>
                 ))}
+                <div>
+                    <ListItem onClick={handleClick}>
+                        <ListItemButton>
+                            <ListItemText primaryTypographyProps={{fontSize: '12px'}} primary="Categories" /> <KeyboardArrowDownIcon />
+                        </ListItemButton>
+                    </ListItem>
+                    <StyledMenu
+                        anchorEl={anchorEl}
+                        open={menuOpen}
+                        onClose={handleClose}
+                    >
+                        {navItems.filter((item) => item.id > 2).map((item) => (
+                            <MenuItem style={{ backgroundColor: "#282828", color: "#ffffff" }} onClick={() => handleDrawerToggle(item.route)} disableRipple>
+                                {item.name}
+                            </MenuItem>
+                        ))}
+                    </StyledMenu>
+                </div>
             </List>
         </Box>
     );

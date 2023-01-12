@@ -10,7 +10,7 @@ const Footer = () => {
         <BoxStyle data-testid="down-nav-bar">
             <Grid container alignItems="center" justifyContent="space-between" px={2}>
                 <Grid item onClick={() => navigate("/")} data-testid="home-logo">
-                    <LogoStyle width="100px" height="30px" />
+                    <LogoStyle width="90px" height="30px" />
                 </Grid>
                 {/* <Grid item>
                     <TextStyle>
@@ -21,7 +21,7 @@ const Footer = () => {
                 </Grid> */}
                 <Grid item>
                     <TextStyle>
-                        <Typography>
+                        <Typography style={{fontSize: "13px"}}>
                             Ⓒ 2023 Subishaaa. All rights reserved
                         </Typography>
                     </TextStyle>

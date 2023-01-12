@@ -18,7 +18,7 @@ function HomeTemplate() {
                     <NavBar />
                     <Toolbar />
                 </Header>
-                <Main>
+                <Main style={{ backgroundColor: "#f2e9e9"}}>
                     <Outlet />
                 </Main>
 

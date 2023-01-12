@@ -1,4 +1,16 @@
 export const navItems = [
-    { id: 1, route: "/products/all", name: "All Products" },
-    { id: 2, route: "/contact-form", name: "Contact Us" },
+    { id: 1, route: "/contact-form", name: "Contact Us" },
+    { id: 2, route: "/products/all", name: "All Products" },
+    { id: 3, route: "/products/rings", name: "Rings" },
+    { id: 4, route: "/products/earrings", name: "Earrings" },
+    { id: 5, route: "/products/necklace", name: "Necklace" },
+    { id: 6, route: "/products/chainset", name: "Chain Set" },
+    { id: 7, route: "/products/pendantset", name: "Pendant Set" },
+    { id: 8, route: "/products/bracelets", name: "Bracelets" },
+    { id: 9, route: "/products/bangles", name: "Bangles" },
+    { id: 10, route: "/products/mangalsutra", name: "Mangal Sutra" },
+    { id: 11, route: "/products/toerings", name: "Toe Rings" },
+    { id: 12, route: "/products/nosepins", name: "Nose Pins" },
+    { id: 13, route: "/products/anklet", name: "Anklet" },
+    { id: 14, route: "/products/silverwatches", name: "Silver Watches" },
 ];

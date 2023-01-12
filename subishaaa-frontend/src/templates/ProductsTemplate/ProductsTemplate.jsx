@@ -6,6 +6,7 @@ import AccordionDetails from "../../components/atoms/AccordionDetails/AccordionD
 import AccordionSummary from "../../components/atoms/AccordionSummary/AccordionSummary";
 import ExpandMoreIcon from "../../components/atoms/ExpandMoreIcon/ExpandMoreIcon";
 import Typography from "../../components/atoms/Typography/Typography";
+import Box from "../../components/atoms/Box/Box";
 import Link from '@mui/material/Link';
 import { BoxStyle, TitleStyle } from "./ProductsTemplate.styles";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,64 +36,46 @@ const ProductsTemplate = () => {
     var links = [["Rings", "rings"], ["Earrings", "earrings"], ["Necklace", "necklace"], ["Chain Set", "chainset"], ["Pendant Set", "pendantset"], ["Bracelets", "bracelets"], ["Bangles", "bangles"],
     ["Mangal Sutra", "mangalsutra"], ["Toe Rings", "toerings"], ["Nose Pins", "nosepins"], ["Anklet", "anklet"], ["Silver Watches", "silverwatches"], ["All Products", "all"]]
 
-    // var items = [
-    //     {
-    //         id: 1,
-    //         name: "Random Name #1",
-    //         description: "Probably the most random thing you have ever seen!",
-    //         image: "https://media.istockphoto.com/id/154960096/photo/six-diamond-rings-isolated-on-white.jpg?b=1&s=170667a&w=0&k=20&c=fqH06eh3KiKDPCmrxwiEqUaoCFdjTq1WOptuQkZPYOA=",
-    //         rate: 10000
-    //     },
-    //     {
-    //         id: 2,
-    //         name: "Random Name #2",
-    //         description: "Hello World!",
-    //         image: "https://media.istockphoto.com/id/471712723/photo/watch.jpg?b=1&s=170667a&w=0&k=20&c=UjZBYrQTAZIjCm819LAJ1N6Oe9hnTCfe60swtfD9A_E=",
-    //         rate: 100000
-    //     },
-    //     {
-    //         id: 3,
-    //         name: "Random Name #2",
-    //         description: "Hello World!",
-    //         image: "https://www.shutterstock.com/image-photo/jewelry-diamond-rings-necklaces-show-260nw-753671818.jpg",
-    //         rate: 100000
-    //     }
-    // ]
-
     return (
         <BoxStyle >
-
-            <Accordion
-                expanded={expanded === "filter-panel"}
-                onChange={handleChange("filter-panel")}
-            >
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="filter-panel-bh-content"
-                    id="filter-panel-bh-header"
+            <Box sx={{ display: { xs: "block", md: "none" } }}>
+                <Accordion
+                    expanded={expanded === "filter-panel"}
+                    onChange={handleChange("filter-panel")}
+                    sx={{ marginTop: 2, marginBottom: 2}}
                 >
-                    <TitleStyle>
-                        <Typography variant="h6">Categories</Typography>
-                    </TitleStyle>
-                </AccordionSummary>
-                <AccordionDetails >
-                    {links.map((link, key) => {
-                        const hrefLink = `/products/${link[1]}`;
-                        return (
-                            <Typography key={key} >
-                                <Link style={{ color: "#d5bf6e" }} href={hrefLink} underline="hover">
-                                    {link[0]}
-                                </Link>
-                            </Typography>);
-                    })}
-                </AccordionDetails>
-            </Accordion>
-
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="filter-panel-bh-content"
+                        id="filter-panel-bh-header"
+                    >
+                        <TitleStyle>
+                            <Typography variant="h6">Categories</Typography>
+                        </TitleStyle>
+                    </AccordionSummary>
+                    <AccordionDetails >
+                        {links.map((link, key) => {
+                            const hrefLink = `/products/${link[1]}`;
+                            return (
+                                <Typography key={key} >
+                                    <Link style={{ color: "#d5bf6e" }} href={hrefLink} underline="hover">
+                                        {link[0]}
+                                    </Link>
+                                </Typography>);
+                        })}
+                    </AccordionDetails>
+                </Accordion>
+            </Box>
             <Grid container spacing={2}>
                 {products.map((item) => (
-                    <Grid key={item.id} item xs={12} md={4}>
-                        <ProductCard item={item} />
-                    </Grid>
+                    <>
+                        <Grid sx={{ display: { xs: "block", md: "none" } }} key={item.id} item xs={6} md={4} >
+                            <ProductCard item={item} mobile={true} />
+                        </Grid>
+                        <Grid sx={{ display: { xs: "none", md: "block" } }} key={item.id} item xs={12} md={4}>
+                            <ProductCard item={item} mobile={false} />
+                        </Grid>
+                    </>
                 ))}
             </Grid>
         </BoxStyle>
