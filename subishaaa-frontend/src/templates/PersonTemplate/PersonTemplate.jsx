@@ -9,10 +9,10 @@ const PersonTemplate = () => {
     const dispatch = useDispatch();
 
     const persons = useSelector((state) => state.persons.persons);
-    console.log(persons);
 
     React.useEffect(() => {
-        dispatch(getPersons());
+        let json = JSON.parse(localStorage.getItem("json"));
+        dispatch(getPersons(json.token));
     }, [dispatch])
 
     return (

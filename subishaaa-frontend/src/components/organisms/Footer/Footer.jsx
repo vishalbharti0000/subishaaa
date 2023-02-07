@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Footer = () => {
     const navigate = useNavigate();
     return (
-        <BoxStyle data-testid="down-nav-bar">
+        <BoxStyle style={{ backgroundColor: "#66052d" }} data-testid="down-nav-bar">
             <Grid container alignItems="center" justifyContent="space-between" px={2}>
                 <Grid item onClick={() => navigate("/")} data-testid="home-logo">
                     <LogoStyle width="90px" height="30px" />

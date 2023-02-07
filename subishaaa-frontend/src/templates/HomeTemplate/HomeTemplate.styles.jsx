@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const FooterWrapper = styled.footer`
   background-color: ${({ theme }) =>
-        theme.palette.mode === "light" ? "#282828" : "#363e48"};
+        theme.palette.mode === "light" ? "#f2e9e9" : "#363e48"};
 `;
 
 export const Header = styled.header``;

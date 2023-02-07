@@ -12,6 +12,16 @@ import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 const App = () => {
   const { settings } = useSettings();
+  // const [show, setShow] = React.useState(false)
+
+  // React.useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     setShow(true)
+  //   }, 1000)
+
+  //   return () => clearTimeout(timeout)
+
+  // }, [])
 
   const theme = createTheme({
     direction: settings.direction,
@@ -21,7 +31,7 @@ const App = () => {
   });
 
   const onErrorHandler = (error, errorInfo) => {
-    //Sending error logs to AWS CLOUDWATCH when causes any error in Application
+    console.error(error);
   };
 
   return (
@@ -34,6 +44,7 @@ const App = () => {
             onError={onErrorHandler}
           >
             <Suspense fallback={<LoaderDialog />}>
+              {/* {!show ? <LoaderDialog /> : <Routing />} */}
               <Routing />
             </Suspense>
           </ErrorBoundary>

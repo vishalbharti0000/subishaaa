@@ -67,7 +67,7 @@ const ProductsTemplate = () => {
                 </Accordion>
             </Box>
             <Grid container spacing={2}>
-                {products.map((item) => (
+                {products.map((item, key) => (
                     <>
                         <Grid sx={{ display: { xs: "block", md: "none" } }} key={item.id} item xs={6} md={4} >
                             <ProductCard item={item} mobile={true} />

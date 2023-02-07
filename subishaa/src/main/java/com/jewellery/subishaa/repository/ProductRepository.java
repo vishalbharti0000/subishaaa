@@ -16,4 +16,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     List<Product> findHomepageTop10Products();
 
     List<Product> findByCategory(String category);
+
+    @Query(nativeQuery = true, value = "select * from product where carousel_priority<>true")
+    List<Product> findAllProducts();
 }

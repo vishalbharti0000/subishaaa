@@ -41,11 +41,11 @@ function Item(props) {
                     marginTop: 2,
                     padding: 0
                 }}>
-                    <img width="100%" height="230px" alt="aLt" src={props.item.image} />
+                    <img width="100%" height="390px" alt="aLt" src={props.item.image} />
                 </Paper>
                 :
                 <Paper>
-                    <img width="100%" height="650vh" alt="aLt" src={props.item.image} style={{ display: "block", marginLeft: "auto", marginRight: "auto" }} />
+                    <img width="100%" height="850vh" alt="aLt" src={props.item.image} style={{ display: "block", marginLeft: "auto", marginRight: "auto" }} />
                 </Paper>
             }
 

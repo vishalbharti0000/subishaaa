@@ -5,13 +5,18 @@ import CardContent from "../../atoms/CardContent/CardContent";
 import Grid from "../../atoms/Grid/Grid";
 import Typography from "../../atoms/Typography/Typography";
 import { PersonModel } from "./PersonCard.styles";
-import { useNavigate } from "react-router-dom";
 
 function PersonCard(props) {
-    const navigate = useNavigate();
+
+    const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric", hour: '2-digit', minute: '2-digit', second: '2-digit' }
+        return new Date(dateString).toLocaleDateString(undefined, options)
+    }
+
+
     return (
         <div data-testid="carcard">
-            <Card data-testid="card" onClick={() => navigate("/")}>
+            <Card data-testid="card">
                 <CardActionArea>
                     <CardContent>
                         <Grid
@@ -29,6 +34,9 @@ function PersonCard(props) {
                                 </Typography>
                                 <Typography gutterBottom component="div">
                                     <PersonModel>{props.item.email}</PersonModel>
+                                </Typography>
+                                <Typography gutterBottom component="div">
+                                    <PersonModel>{formatDate(props.item.timeStamp)}</PersonModel>
                                 </Typography>
                             </Grid>
                         </Grid>

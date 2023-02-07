@@ -26,12 +26,12 @@ const schema = yup
     .required();
 
 export default function ProductForm() {
+    let json = JSON.parse(localStorage.getItem("json"));
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const responseProduct = useSelector((state) => state.products.responseProduct);
     const [clicked, setClicked] = React.useState(false);
-    console.log(responseProduct);
     const [file, setFile] = React.useState([]);
 
     const {
@@ -77,7 +77,7 @@ export default function ProductForm() {
         for ( var key in data ) {
             formData.append(key, data[key]);
         }
-        dispatch(sendProductForm(formData));
+        dispatch(sendProductForm(formData, json.token));
         setClicked(true);
     };
 

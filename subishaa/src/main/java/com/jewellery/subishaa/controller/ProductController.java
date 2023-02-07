@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -28,6 +29,12 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAllProducts(){
         return ResponseEntity.ok(productService.getAllProducts());
     }
+
+    @GetMapping("/product/{id}")
+    public ResponseEntity<Optional<Product>> getProductWithId(@PathVariable("id") Long id){
+        return ResponseEntity.ok(productService.getProductWithId(id));
+    }
+
 
     @GetMapping("/products/{category}")
     public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable("category") String category){

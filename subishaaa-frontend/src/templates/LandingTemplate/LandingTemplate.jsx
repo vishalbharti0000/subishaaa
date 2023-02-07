@@ -25,7 +25,7 @@ const LandingTemplate = () => {
                     <Box sx={{ display: { xs: "none", md: "block" } }}>
                         <CustomizedCarousel mobile={false} />
                     </Box>
-                    <Box sx={{ display: { xs: "block", md: "none" }}} >
+                    <Box sx={{ display: { xs: "block", md: "none" } }} >
                         <CustomizedCarousel mobile={true} />
                     </Box>
                 </Grid>
@@ -49,6 +49,20 @@ const LandingTemplate = () => {
                                             View All Products
                                         </Button>
                                     </Stack>
+                                </CardContent>
+                                <CardContent>
+                                    <Typography sx={{ fontSize: 14 }} color="text.secondary" textAlign={"center"} gutterBottom>
+                                        <BusinessIcon style={{ color: "#41b6c2" }} fontSize="large" />
+                                    </Typography>
+                                    <Typography variant="h5" textAlign={"center"} component="div">
+                                        Dhanbad, Jharkhand
+                                    </Typography>
+                                    <Typography textAlign={"center"} alignItems={"center"} color="text.secondary" >
+                                        <Button onClick={() => window.open("https://wa.me/message/NCNR7XLD4MKAG1")} startIcon={<WhatsAppIcon style={{ color: "#41b6c2" }} />}> +91 86760 90911 </Button>
+                                    </Typography>
+                                    <Typography textAlign={"center"} alignItems={"center"} color="text.secondary" >
+                                        <Button onClick={() => window.open("https://instagram.com/subishaaa_thefinesilver?igshid=Yzg5MTU1MDY=")} startIcon={<InstagramIcon style={{ color: "#E4405F" }} />}> subishaaa_thefinesilver </Button>
+                                    </Typography>
                                 </CardContent>
                             </Box>
                             <CardMedia

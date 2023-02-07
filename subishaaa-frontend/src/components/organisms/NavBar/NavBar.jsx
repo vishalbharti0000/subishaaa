@@ -11,12 +11,15 @@ import MobileDrawer from "../../molecules/MobileDrawer/MobileDrawer";
 import { NavButton, StyledMenu } from "./NavBar.styles";
 import MenuItem from '../../atoms/MenuItem/MenuItem';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
+import { ActionTypes } from "../../../redux/constants/action-types";
+import { useDispatch } from "react-redux";
 
 const NavBar = (props) => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+    const isLoggedIn = localStorage.getItem("json");
+    const dispatch = useDispatch();
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -27,7 +30,7 @@ const NavBar = (props) => {
     const handleDrawerToggle = (nav) => {
         setMobileOpen(false);
         if (nav) {
-            navigate(nav, { replace: true });
+            navigate(nav);
             window.location.reload(false);
         }
     };
@@ -59,6 +62,9 @@ const NavBar = (props) => {
                             </NavButton>
                         ))}
                         <NavButton
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                            disableElevation
                             onClick={handleClick}
                             endIcon={<KeyboardArrowDownIcon />}
                         >
@@ -69,13 +75,52 @@ const NavBar = (props) => {
                             open={open}
                             onClose={handleClose}
                         >
-                            {navItems.filter((item) => item.id > 2).map((item) => (
-                                <MenuItem style={{ backgroundColor: "#282828", color: "#ffffff" }} onClick={() => { navigate(item.route); window.location.reload(false); }} disableRipple>
-                                {item.name}
-                            </MenuItem>
+                            {navItems.filter((item) => item.id >= 2).map((item) => (
+                                <MenuItem key={item.id} style={{ backgroundColor: "#66052d", color: "#ffffff" }} onClick={() => { navigate(item.route); window.location.reload(false); }} disableRipple>
+                                    {item.name}
+                                </MenuItem>
 
-                        ))}
+                            ))}
                         </StyledMenu>
+                    </Box>
+                    <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                        {!isLoggedIn ? (
+                            <>
+                                <NavButton
+                                    onClick={() => navigate("login", { replace: true })}
+                                    variant="contained"
+                                >
+                                    Sign In
+                                </NavButton>
+                                <NavButton
+                                    variant="contained"
+                                    onClick={() => navigate("register", { replace: true })}
+                                >
+                                    Sign Up
+                                </NavButton>
+                            </>
+                        ) : (
+                            <>
+                                <NavButton sx={{ cursor: "default" }}>
+                                    Hello, {JSON.parse(localStorage.getItem("json")).firstName}
+                                </NavButton>
+                                <NavButton
+                                    variant="contained"
+                                    onClick={() => navigate("myorders")}
+                                >
+                                    My Orders
+                                </NavButton>
+                                <NavButton
+                                    variant="contained"
+                                    onClick={() => {
+                                        dispatch({ type: ActionTypes.LOGOUT_USER });
+                                        navigate("/", { replace: true });
+                                    }}
+                                >
+                                    Logout
+                                </NavButton>
+                            </>
+                        )}
                     </Box>
                 </Toolbar>
             </AppBar>

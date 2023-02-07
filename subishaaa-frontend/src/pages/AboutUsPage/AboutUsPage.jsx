@@ -2,7 +2,7 @@ import React from "react";
 import AboutUsTemplate from "../../templates/AboutUsTemplate/AboutUsTemplate";
 
 const AboutUsPage = () => {
-    return (-
+    return (
         < div data-testid="errorpage" >
             <AboutUsTemplate />
         </div>

@@ -9,7 +9,7 @@ const LoaderDialog = () => {
                 <LottiePlayer
                     autoplay
                     loop
-                    src="https://assets3.lottiefiles.com/packages/lf20_hzw6zpce.json"
+                    src="https://assets3.lottiefiles.com/private_files/lf30_c5opkzmh.json"
                 />
             </Dialog>
         </>

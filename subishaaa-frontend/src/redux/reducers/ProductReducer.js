@@ -5,7 +5,8 @@ const initialState = {
     carouselProductsStatus: "",
     products: [],
     productsStatus: "",
-    responseProduct: { status: "" }
+    responseProduct: { status: "" },
+    product: {}
 }
 
 export const ProductReducer = (state = initialState, action = {} ) => {
@@ -26,6 +27,9 @@ export const ProductReducer = (state = initialState, action = {} ) => {
             if(action.payload.status === 200)
                 return { ...state, responseProduct: action.payload };
             return {...state, responseProduct: {status: 500}}
+
+        case ActionTypes.GET_PRODUCT:
+            return { ...state, product: action.payload.data };
 
         default:
             return state;

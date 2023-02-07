@@ -32,7 +32,7 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
-        return (List<Product>) productRepository.findAll();
+        return (List<Product>) productRepository.findAllProducts();
     }
 
     public List<Product> getTop5CarouselProducts() {
@@ -58,5 +58,9 @@ public class ProductService {
 
     public List<Product> getProductsByCategory(String category) {
         return productRepository.findByCategory(category);
+    }
+
+    public Optional<Product> getProductWithId(Long id) {
+        return productRepository.findById(id);
     }
 }

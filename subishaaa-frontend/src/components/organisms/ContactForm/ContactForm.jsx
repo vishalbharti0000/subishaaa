@@ -30,7 +30,6 @@ export default function ContactForm() {
 
     const responsePerson = useSelector((state) => state.persons.responsePerson);
     const [clicked, setClicked] = React.useState(false);
-    console.log(responsePerson);
 
     const { enqueueSnackbar } = useSnackbar();
 

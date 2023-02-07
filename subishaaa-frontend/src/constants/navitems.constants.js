@@ -13,4 +13,5 @@ export const navItems = [
     { id: 12, route: "/products/nosepins", name: "Nose Pins" },
     { id: 13, route: "/products/anklet", name: "Anklet" },
     { id: 14, route: "/products/silverwatches", name: "Silver Watches" },
+    { id: 0, route: "/aboutus", name: "About Subishaaa" },
 ];
