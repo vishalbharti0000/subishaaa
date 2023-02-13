@@ -33,6 +33,7 @@ const LoginForm = () => {
     const { enqueueSnackbar } = useSnackbar();
     const loggedInUser = useSelector((state) => state.users.loggedInUser);
     const navigate = useNavigate();
+    
 
     const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -51,8 +52,29 @@ const LoginForm = () => {
             });
 
             dispatch({ type: ActionTypes.CLEAR_LOGIN_STATUS });
+        } else if (loggedInUser.status === 403) {
+            enqueueSnackbar("No Account Exist with this email", {
+                autoHideDuration: 2000,
+                anchorOrigin: { horizontal: "right", vertical: "top" },
+                variant: "error",
+            });
+            dispatch({ type: ActionTypes.CLEAR_LOGIN_STATUS });
+        } else if (loggedInUser.status === 401) {
+            enqueueSnackbar("No Account Exist with this email", {
+                autoHideDuration: 2000,
+                anchorOrigin: { horizontal: "right", vertical: "top" },
+                variant: "error",
+            });
+            dispatch({ type: ActionTypes.CLEAR_LOGIN_STATUS });
+        } else if (loggedInUser.status === 405) {
+            enqueueSnackbar("Your Account Exist with Social Login Use Google Login", {
+                autoHideDuration: 2000,
+                anchorOrigin: { horizontal: "right", vertical: "top" },
+                variant: "error",
+            });
+            dispatch({ type: ActionTypes.CLEAR_LOGIN_STATUS });
         } else if (loggedInUser.status === 400) {
-            enqueueSnackbar("Incorrect Email or Password", {
+            enqueueSnackbar("Wrong Password", {
                 autoHideDuration: 2000,
                 anchorOrigin: { horizontal: "right", vertical: "top" },
                 variant: "error",

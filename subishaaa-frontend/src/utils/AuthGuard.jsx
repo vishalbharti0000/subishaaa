@@ -3,8 +3,8 @@ import { useLocation, Navigate } from "react-router-dom";
 
 const AuthGuard = (props) => {
     const navState = useLocation();
-    const item = localStorage.getItem("json");
-    // const json = JSON.parse(localStorage.getItem("json"));
+    const item = sessionStorage.getItem("json");
+    // const json = JSON.parse(sessionStorage.getItem("json"));
     return item ? (
         <>{props.children}</>
     ) : (

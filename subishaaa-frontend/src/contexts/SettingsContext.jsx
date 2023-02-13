@@ -35,7 +35,7 @@ export const restoreSettings = () => {
 }
 
 export const storeSettings = (settings) => {
-    window.localStorage.setItem('settings', JSON.stringify(settings))
+    window.sessionStorage.setItem('settings', JSON.stringify(settings))
 }
 
 export const SettingsContext = createContext({

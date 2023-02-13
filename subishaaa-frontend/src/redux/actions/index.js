@@ -80,11 +80,18 @@ export const sendLoginForm = (data) =>
     async function (dispatch) {
         const response = await axios
             .post(`${REACT_APP_BASEURL}/free/login`, data)
-            .catch((err) => { console.error(err) });
-            dispatch({
-                type: ActionTypes.SEND_LOGIN_FORM,
-                payload: response,
-            });
+            .catch((err) => { 
+                dispatch({
+                    type: ActionTypes.SEND_LOGIN_FORM,
+                    payload: err.response,
+                });
+                console.error(err) });
+            if(response?.status === 200){
+                dispatch({
+                    type: ActionTypes.SEND_LOGIN_FORM,
+                    payload: response,
+                });
+            }
     };
 
 export const sendOrderDetails = (customerId, productId, amount, paymentMode, data, token) =>
@@ -144,8 +151,13 @@ export const sendPaymentDone = (orderId, token) =>
 
 export const sendStatusChange = (orderId, sts, token) =>
     async function (dispatch) {
+        let xsrf = sessionStorage.getItem('XSRF-TOKEN');
+        const headers = {
+            'Authorization': "Bearer " + token,
+            'X-XSRF-TOKEN': xsrf
+        }
         const response = await axios
-            .post(`${REACT_APP_BASEURL}/admin/updateOrderStatus/${orderId}/${sts}`, {}, { headers: { Authorization: "Bearer " + token } })
+            .post(`${REACT_APP_BASEURL}/admin/updateOrderStatus/${orderId}/${sts}`, {}, { headers: headers })
             .catch((err) => { console.error(err) });
             dispatch({
                 type: ActionTypes.SEND_STATUS_CHANGE,

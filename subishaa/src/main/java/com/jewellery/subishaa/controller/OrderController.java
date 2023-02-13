@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("*")
 @RestController
 public class OrderController {
     @Autowired
@@ -27,6 +26,7 @@ public class OrderController {
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(order);
     }
+
 
     @GetMapping(value = "/getOrder/{customerId}")
     public ResponseEntity<Iterable<Order>> getAllOrdersOfCustomers(@PathVariable("customerId") Long customerId) {

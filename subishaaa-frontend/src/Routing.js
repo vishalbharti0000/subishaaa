@@ -74,7 +74,6 @@ const Routing = () => {
 
                 <Route path="register" element={<RegistrationPage />} />
                 <Route path="login" element={<LoginPage />} />
-
                 <Route path="*" element={<ErrorPage errorType={"4xx"} />} />
             </Route>
         </Routes>

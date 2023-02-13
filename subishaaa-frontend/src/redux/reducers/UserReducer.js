@@ -20,16 +20,16 @@ export const UserReducer = (state = initialState, action = {} ) => {
 
         case ActionTypes.SEND_LOGIN_FORM:
             if(action.payload.status === 200) {
-                localStorage.setItem("json", JSON.stringify(action.payload.data));
+                sessionStorage.setItem("json", JSON.stringify(action.payload.data));
                 return { ...state, loggedInUser: action.payload };
             }
-            return {...state, loggedInUser: {status: 400}}
+            return { ...state, loggedInUser: {status: action.payload.status} };
 
         case ActionTypes.CLEAR_LOGIN_STATUS:
             return {...state, loggedInUser: {status: ""}}
 
         case ActionTypes.LOGOUT_USER:
-            localStorage.removeItem("json");
+            sessionStorage.removeItem("json");
             return {...state};
 
         case ActionTypes.SEND_ORDER_FORM:

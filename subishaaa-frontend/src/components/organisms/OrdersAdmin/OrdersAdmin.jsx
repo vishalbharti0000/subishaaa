@@ -30,7 +30,7 @@ export const OrdersAdmin = () => {
     const orders = useSelector((state) => state.users.orders)
 
     useEffect(() => {
-        let json = JSON.parse(localStorage.getItem("json"));
+        let json = JSON.parse(sessionStorage.getItem("json"));
         if (json.id) {
             if(sts === "ALL")
                 dispatch(getAllOrders("", json.token));

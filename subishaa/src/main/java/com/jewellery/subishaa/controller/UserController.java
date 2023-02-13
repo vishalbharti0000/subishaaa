@@ -17,7 +17,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("*")
 @RestController
 public class UserController {
     @Autowired
@@ -36,12 +35,12 @@ public class UserController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/free/registration")
-    public ResponseEntity<User> customerRegistration(@RequestBody User user) {
+    public ResponseEntity<User> userRegistration(@RequestBody User user) {
         return ResponseEntity.ok(userService.saveCustomer(user));
     }
 
     @GetMapping("/admin/customer/{customerId}")
-    public ResponseEntity<UserResponse> getCustomerById(@PathVariable("customerId") Long customerId) {
+    public ResponseEntity<UserResponse> getUserById(@PathVariable("customerId") Long customerId) {
         return ResponseEntity.ok(userService.getCustomerById(customerId));
     }
 
@@ -59,8 +58,6 @@ public class UserController {
 
         String token = jwtUtils.generateToken(userDetails);
 
-        var user = userService.getCustomerByEmail(jwtAuthRequest.getUsername());
-
-        return ResponseEntity.ok(new JwtAuthResponse(token, user));
+        return ResponseEntity.ok(new JwtAuthResponse(token, userService.getCustomerByEmail(jwtAuthRequest.getUsername()).get()));
     }
 }

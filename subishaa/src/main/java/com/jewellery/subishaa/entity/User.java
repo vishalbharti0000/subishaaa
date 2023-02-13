@@ -1,5 +1,6 @@
 package com.jewellery.subishaa.entity;
 
+import com.jewellery.subishaa.enums.AuthProvider;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,7 @@ public class User {
     private String password;
     private Timestamp timeStamp;
 
-    String role = "ROLE_USER";
+    private String role = "ROLE_USER";
 
     @PrePersist
     protected void onCreate(){

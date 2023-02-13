@@ -21,13 +21,11 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         try{
-            Optional<User> user = Optional.ofNullable(userRepository.findByEmail(username));
+            Optional<User> user = userRepository.findByEmail(username);
             return user.map(MyUserDetails::new).orElse(null);
         }
         catch(Exception ex){
             throw new UsernameNotFoundException("Error in find by email", ex);
-
         }
-
     }
 }

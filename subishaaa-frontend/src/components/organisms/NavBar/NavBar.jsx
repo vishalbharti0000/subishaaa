@@ -18,7 +18,7 @@ const NavBar = (props) => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-    const isLoggedIn = localStorage.getItem("json");
+    const isLoggedIn = sessionStorage.getItem("json");
     const dispatch = useDispatch();
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -102,7 +102,7 @@ const NavBar = (props) => {
                         ) : (
                             <>
                                 <NavButton sx={{ cursor: "default" }}>
-                                    Hello, {JSON.parse(localStorage.getItem("json")).firstName}
+                                    Hello, {JSON.parse(sessionStorage.getItem("json")).firstName}
                                 </NavButton>
                                 <NavButton
                                     variant="contained"

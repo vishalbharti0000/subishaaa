@@ -23,7 +23,7 @@ const MobileDrawer = (props) => {
     const [open, setOpen] = useState(true);
     const [anchorEl, setAnchorEl] = useState(null);
     const menuOpen = Boolean(anchorEl);
-    const isLoggedIn = localStorage.getItem("json");
+    const isLoggedIn = sessionStorage.getItem("json");
     const dispatch = useDispatch();
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -43,7 +43,7 @@ const MobileDrawer = (props) => {
                     <>
                         <ListItem>
                             <Typography variant="h6" sx={{ marginLeft: "16px" }}>
-                                Hello, {JSON.parse(localStorage.getItem("json")).firstName}
+                                Hello, {JSON.parse(sessionStorage.getItem("json")).firstName}
                             </Typography>
                         </ListItem>
                         <Divider />

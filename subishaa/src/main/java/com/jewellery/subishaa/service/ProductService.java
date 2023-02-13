@@ -32,7 +32,7 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
-        return (List<Product>) productRepository.findAllProducts();
+        return productRepository.findAllProducts();
     }
 
     public List<Product> getTop5CarouselProducts() {

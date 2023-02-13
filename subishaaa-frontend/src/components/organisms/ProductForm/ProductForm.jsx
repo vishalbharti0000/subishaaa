@@ -26,7 +26,7 @@ const schema = yup
     .required();
 
 export default function ProductForm() {
-    let json = JSON.parse(localStorage.getItem("json"));
+    let json = JSON.parse(sessionStorage.getItem("json"));
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();

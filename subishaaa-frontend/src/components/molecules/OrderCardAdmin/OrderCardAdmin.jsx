@@ -24,7 +24,7 @@ export const OrderCardAdmin = ({ order }) => {
     const { sts } = useParams();
     const sendStatusChangeStatus = useSelector((state) => state.users.sendStatusChangeStatus);
     const sendPaymentStatus = useSelector((state) => state.users.sendPaymentStatus);
-    let json = JSON.parse(localStorage.getItem("json"));
+    let json = JSON.parse(sessionStorage.getItem("json"));
     const dispatch = useDispatch();
 
     const orderStatus = (order.paymentMode === "PAY_0N_DELIVERY" && (order.orderStatus === "PAYMENT_STATUS_PENDING" || order.orderStatus === "PAYMENT_DONE")) ? "DISPATCH_AFTER_VERIFICATION" : order.orderStatus;

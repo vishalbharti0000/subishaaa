@@ -28,7 +28,7 @@ export const MyOrders = () => {
     const myOrders = useSelector((state) => state.users.myOrders)
 
     useEffect(() => {
-        let json = JSON.parse(localStorage.getItem("json"));
+        let json = JSON.parse(sessionStorage.getItem("json"));
         if (json.id) {
             dispatch(getMyOrders(json.id, json.token));
         }

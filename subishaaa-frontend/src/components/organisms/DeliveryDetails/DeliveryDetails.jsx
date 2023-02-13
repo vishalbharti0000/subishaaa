@@ -25,7 +25,7 @@ const schema = yup
     .required();
 
 const DeliveryDetails = () => {
-    const json = JSON.parse(localStorage.getItem("json"));
+    const json = JSON.parse(sessionStorage.getItem("json"));
     const { productId, amount } = useParams();
     const responseOrder = useSelector((state) => state.users.responseOrder);
     const {

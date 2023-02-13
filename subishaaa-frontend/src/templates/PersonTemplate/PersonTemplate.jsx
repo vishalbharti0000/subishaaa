@@ -11,7 +11,7 @@ const PersonTemplate = () => {
     const persons = useSelector((state) => state.persons.persons);
 
     React.useEffect(() => {
-        let json = JSON.parse(localStorage.getItem("json"));
+        let json = JSON.parse(sessionStorage.getItem("json"));
         dispatch(getPersons(json.token));
     }, [dispatch])
 
